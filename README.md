@@ -2,6 +2,14 @@
 
 Tehtävä: 10 - Refaktorointi (Kivi-Paperi-Sakset) (Eclipse, JUnit 5, JaCoCoverage)
 
+
+### Mikä osui silmään?
+- järkyttävän suuri main luokka ilman jäsentelyä.
+- Suuret if else putket
+- Huonot nimet (setVoitot pitäisi olla esim kasvataVoittoja)
+- Voittojen määrää ei pidetä oikein yllä. Pitäisi aina hakea uudestaan
+- huuruisia metodeja
+
 ### Mitä refaktoroitiin?
 
 Koodi on jaettu Pelin ja Pelaajan lisäksi useampaan uuteen luokkaan (Choice, Turn ja Outcome), millä parantaa koodin modulaarisuutta ja testattavuutta.
