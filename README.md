@@ -22,4 +22,4 @@ Muutama testi on lisätty jolla saadaan testikattavuutta ylös. GameTest hyödyn
 
 ### Javadoc
 
--tähän javadoc linkki-
+[javadoc täällä](https://kivi-sakset-paperi-refactor.vercel.app/package-summary.html)https://kivi-sakset-paperi-refactor.vercel.app/package-summary.html
