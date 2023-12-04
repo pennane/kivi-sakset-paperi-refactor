@@ -1,0 +1,232 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > Game</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">&lt;empty package name&gt;</a>
+</div>
+
+<h1>Coverage Summary for Class: Game (&lt;empty package name&gt;)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Game</td>
+<td class="coverageStat">
+  <span class="percent">
+    88,9%
+  </span>
+  <span class="absValue">
+    (8/9)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    73,1%
+  </span>
+  <span class="absValue">
+    (19/26)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">Game$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    90%
+  </span>
+  <span class="absValue">
+    (9/10)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    74,1%
+  </span>
+  <span class="absValue">
+    (20/27)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;import java.util.ArrayList;
+&nbsp;import java.util.List;
+&nbsp;
+&nbsp;/**
+&nbsp; * Represents a game between two players, tracking the progress of turns played,
+&nbsp; * and determining the winner based on a set number of wins.
+&nbsp; */
+&nbsp;public class Game {
+&nbsp;    private final List&lt;Turn&gt; playedTurns;
+&nbsp;    private final Player player1;
+&nbsp;    private final Player player2;
+&nbsp;
+&nbsp;    private final int winsToPlayUntil;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Constructs a Game with specified winning criteria and players.
+&nbsp;     *
+&nbsp;     * @param winsToPlayUntil the number of wins required for a player to win the game.
+&nbsp;     * @param player1 the first player in the game.
+&nbsp;     * @param player2 the second player in the game.
+&nbsp;     */
+<b class="fc">&nbsp;    public Game(int winsToPlayUntil, Player player1, Player player2) {</b>
+<b class="fc">&nbsp;        this.winsToPlayUntil = winsToPlayUntil;</b>
+<b class="fc">&nbsp;        this.player1 = player1;</b>
+<b class="fc">&nbsp;        this.player2 = player2;</b>
+&nbsp;
+<b class="fc">&nbsp;        playedTurns = new ArrayList&lt;&gt;();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Checks if the game has finished, which occurs when either player reaches the required wins.
+&nbsp;     *
+&nbsp;     * @return true if the game is finished, false otherwise.
+&nbsp;     */
+&nbsp;    public boolean isFinished() {
+<b class="fc">&nbsp;        return getAmountOfPlayer1Wins() &gt;= winsToPlayUntil || getAmountOfPlayer2Wins() &gt;= winsToPlayUntil;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Updates the win count for the player who won the turn.
+&nbsp;     *
+&nbsp;     * @param outcome the outcome of the turn, determining which player won.
+&nbsp;     */
+&nbsp;    private void updateWinScores( Outcome outcome ) {
+<b class="fc">&nbsp;        switch (outcome) {</b>
+&nbsp;            case PLAYER1_WIN:
+<b class="fc">&nbsp;                player1.incrementWins();</b>
+<b class="fc">&nbsp;                break;</b>
+&nbsp;            case PLAYER2_WIN:
+<b class="nc">&nbsp;                player2.incrementWins();</b>
+&nbsp;                break;
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Executes a turn in the game where each player chooses their move, updates scores, and records the turn.
+&nbsp;     *
+&nbsp;     * @return the completed turn with the choices and outcome.
+&nbsp;     */
+&nbsp;    public Turn playTurn() {
+<b class="fc">&nbsp;        Choice player1Choice = player1.chooseNextMove();</b>
+<b class="fc">&nbsp;        Choice player2Choice = player2.chooseNextMove();</b>
+<b class="fc">&nbsp;        Turn turn = new Turn(player1Choice, player2Choice);</b>
+<b class="fc">&nbsp;        updateWinScores(turn.getOutcome());</b>
+<b class="fc">&nbsp;        playedTurns.add(turn);</b>
+<b class="fc">&nbsp;        return turn;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    public int getTotalPlayedTurns() {
+<b class="fc">&nbsp;        return playedTurns.size();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    public int getAmountOfDraws() {
+<b class="fc">&nbsp;        return (int) playedTurns.stream().filter(t -&gt; t.getOutcome().equals(Outcome.DRAW)).count();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public int getAmountOfPlayer1Wins() {
+<b class="fc">&nbsp;        return (int) playedTurns.stream().filter(t -&gt; t.getOutcome().equals(Outcome.PLAYER1_WIN)).count();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public int getAmountOfPlayer2Wins() {
+<b class="fc">&nbsp;        return (int) playedTurns.stream().filter(t -&gt; t.getOutcome().equals(Outcome.PLAYER2_WIN)).count();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public String toString() {
+<b class="nc">&nbsp;        int totalTurns = getTotalPlayedTurns();</b>
+<b class="nc">&nbsp;        int draws = getAmountOfDraws();</b>
+<b class="nc">&nbsp;        int player1Wins = getAmountOfPlayer1Wins();</b>
+<b class="nc">&nbsp;        int player2Wins = getAmountOfPlayer2Wins();</b>
+&nbsp;
+<b class="nc">&nbsp;        return String.format(</b>
+&nbsp;                &quot;&quot;&quot;
+&nbsp;                        Eriä pelattu: %d
+&nbsp;                        Tasapelien lukumäärä: %d
+&nbsp;                        Pelaaja 1:llä voittoja: %d
+&nbsp;                        Pelaaja 2:llä voittoja: %d&quot;&quot;&quot;,
+<b class="nc">&nbsp;                totalTurns, draws, player1Wins, player2Wins);</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-12-04 21:20</div>
+</div>
+</body>
+</html>

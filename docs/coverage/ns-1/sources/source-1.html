@@ -1,0 +1,158 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > Choice</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">&lt;empty package name&gt;</a>
+</div>
+
+<h1>Coverage Summary for Class: Choice (&lt;empty package name&gt;)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Choice</td>
+<td class="coverageStat">
+  <span class="percent">
+    75%
+  </span>
+  <span class="absValue">
+    (3/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    55,6%
+  </span>
+  <span class="absValue">
+    (5/9)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">Choice$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    60%
+  </span>
+  <span class="absValue">
+    (3/5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    50%
+  </span>
+  <span class="absValue">
+    (5/10)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;import java.util.Random;
+&nbsp;
+&nbsp;/**
+&nbsp; * Represents the possible choices a player can make in a game of rock paper scissors.
+&nbsp; */
+<b class="fc">&nbsp;public enum Choice {</b>
+<b class="fc">&nbsp;    ROCK, PAPER, SCISSORS;</b>
+&nbsp;
+<b class="fc">&nbsp;    private static final Random RANDOM = new Random();</b>
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Selects a random choice from the available options.
+&nbsp;     *
+&nbsp;     * @return a randomly selected {@link Choice}.
+&nbsp;     */
+&nbsp;    public static Choice getRandom() {
+<b class="fc">&nbsp;        Choice[] values = Choice.values();</b>
+<b class="fc">&nbsp;        return values[RANDOM.nextInt(values.length)];</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public String toString() {
+<b class="nc">&nbsp;        return switch (this) {</b>
+<b class="nc">&nbsp;            case ROCK -&gt; &quot;Kivi&quot;;</b>
+<b class="nc">&nbsp;            case PAPER -&gt; &quot;Paperi&quot;;</b>
+<b class="nc">&nbsp;            case SCISSORS -&gt; &quot;Sakset&quot;;</b>
+&nbsp;        };
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-12-04 21:20</div>
+</div>
+</body>
+</html>
